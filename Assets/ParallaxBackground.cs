@@ -8,19 +8,27 @@ public class ParallaxBackground : MonoBehaviour
     [SerializeField] private float parallaxEffect;
 
     private float xPosition;
+    private float length;
 
     void Start()
     {
         cam = GameObject.Find("Main Camera");
 
+        length = GetComponent<SpriteRenderer>().bounds.size.x;
         xPosition = transform.position.x;
     }
 
   
     void Update()
     {
+        float distanceMove = cam.transform.position.x * (1 - parallaxEffect);
         float distanceToMove = cam.transform.position.x * parallaxEffect;
 
         transform.position = new Vector3(xPosition + distanceToMove, transform.position.y);
+
+        if (distanceMove > xPosition + length)
+            xPosition = xPosition + length;
+        else if (distanceMove < xPosition - length)
+            xPosition = xPosition - length;
     }
 }

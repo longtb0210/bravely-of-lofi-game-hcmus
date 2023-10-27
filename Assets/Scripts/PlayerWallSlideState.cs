@@ -31,10 +31,7 @@ public class PlayerWallSlideState : PlayerState
         if ((xInput != 0 && xInput != player.facingDir))
             stateMachine.ChangeState(player.idleState);
 
-        if (yInput < 0)
-            player.SetVelocity(0, rb.velocity.y);
-        else
-            player.SetVelocity(0, rb.velocity.y * .7f);
+        player.SetVelocity(0, (yInput < 0) ? rb.velocity.y : rb.velocity.y * .7f);
 
         if (player.isGroundDetected())
             stateMachine.ChangeState(player.idleState); 

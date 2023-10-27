@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public bool isBusy {  get; private set; }
     [Header("Move info")]
     public float moveSpeed = 7f;
-    public float jumpForce = 15f;
+    public float jumpForce;
 
     [Header("Dash info")]
     [SerializeField] private float dashCoolDown;
@@ -63,8 +63,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         stateMachine.Initialize(idleState);
 
     }
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
 
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 
-    public void CheckForDashInput()
+    private void CheckForDashInput()
     {
         if (isWallDetected())
             return;
@@ -110,16 +110,16 @@ public class Player : MonoBehaviour
     public void SetVelocity(float _xVelocity, float _yVelocity)
     {
         rb.velocity = new Vector2(_xVelocity, _yVelocity);
-        FlipController(rb.velocity.x);
+        FlipController(_xVelocity);
     }
     #endregion
 
     #region Collision
-    public bool isGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down,groundCheckDistance, whatIsGround);
+    public virtual bool isGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
 
-    public bool isWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, wallCheckDistance, whatIsGround);
+    public virtual bool isWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, wallCheckDistance, whatIsGround);
 
-    private void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
@@ -127,13 +127,13 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Flip
-    public void FlipController(float _x)
+    public virtual void FlipController(float _x)
     {
         if ((_x > 0 && !facingRight) || (_x < 0 && facingRight))
             Flip();
     }
 
-    public void Flip()
+    public virtual void Flip()
     {
         facingDir *= -1;
         facingRight = !facingRight;

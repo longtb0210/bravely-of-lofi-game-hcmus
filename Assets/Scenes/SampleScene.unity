@@ -8862,6 +8862,7 @@ MonoBehaviour:
     m_Bits: 64
   moveSpeed: 1.5
   idleTime: 2
+  battleTime: 7
   attackDistance: 1.5
   attackCoolDown: 0
   lastTimeAttacked: 0
@@ -8874,7 +8875,7 @@ Transform:
   m_GameObject: {fileID: 996536369}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.907842, y: 0.44569993, z: 0}
+  m_LocalPosition: {x: 26.29, y: 1.6, z: 0}
   m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 1
   m_Children:

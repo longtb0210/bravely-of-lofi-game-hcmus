@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 190942565}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.284, y: 0, z: 0}
+  m_LocalPosition: {x: 0.338, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -544,7 +544,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.1080647, y: 2.4099998, z: -10}
+  m_LocalPosition: {x: 10.701816, y: 2.4099998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8862,7 +8862,9 @@ MonoBehaviour:
     m_Bits: 64
   moveSpeed: 1.5
   idleTime: 2
-  attackDistance: 0
+  attackDistance: 1.5
+  attackCoolDown: 0
+  lastTimeAttacked: 0
 --- !u!4 &996536372
 Transform:
   m_ObjectHideFlags: 0
@@ -9307,9 +9309,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 1315615868}
-  groundCheckDistance: 0.06
+  groundCheckDistance: 0.15
   wallCheck: {fileID: 190942566}
-  wallCheckDistance: 0.1
+  wallCheckDistance: 0.05
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
@@ -9319,7 +9321,7 @@ MonoBehaviour:
   - {x: 4, y: 1.5}
   moveSpeed: 9
   jumpForce: 15
-  dashCoolDown: 2
+  dashCoolDown: 1
   dashSpeed: 25
   dashDuration: 0.2
 --- !u!70 &1761097166
@@ -9366,7 +9368,7 @@ Transform:
   m_GameObject: {fileID: 1761097164}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.58, y: -0.83, z: 0}
+  m_LocalPosition: {x: 9.67, y: 0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9567,7 +9569,7 @@ Transform:
   m_GameObject: {fileID: 2143149626}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.1080647, y: 2.4099998, z: -10}
+  m_LocalPosition: {x: 10.701816, y: 2.4099998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

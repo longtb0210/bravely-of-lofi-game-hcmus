@@ -33,8 +33,10 @@ public class SkeletonBattleState : EnemyState
         {
             if (enemy.IsPlayerDetected().distance < enemy.attackDistance)
             {
-                if (CanAttack())
+                if (CanAttack()) 
+                {
                     stateMachine.ChangeState(enemy.attackState);
+                }
             }
         }
 

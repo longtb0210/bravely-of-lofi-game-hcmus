@@ -30,6 +30,7 @@ public class Enemy : Entity
         base.Update();  
 
         stateMachine.currentState.Update();
+
     }
 
     public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();

@@ -9813,6 +9813,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   clonePrefabs: {fileID: 5279292382850214774, guid: fa45d71e76a1cd24d8903bb3c7bcdb92, type: 3}
+  cloneDuration: 1.5
+  canAttack: 1
 --- !u!1 &2017216327
 GameObject:
   m_ObjectHideFlags: 0

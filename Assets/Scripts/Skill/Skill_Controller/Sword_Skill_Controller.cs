@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,16 +12,17 @@ public class Sword_Skill_Controller : MonoBehaviour
     private bool canRotate = true;
     private bool isReturning;
 
-    public float bounceSpeed;
-    public bool isBouncing = true;
-    public int amountOfBounce = 4;
-    public List<Transform> enemyTarget;
+    [Header("Bounce info")]
+    [SerializeField] private float bounceSpeed;
+    private bool isBouncing;
+    private int amountOfBounce;
+    private List<Transform> enemyTarget;
     private int targetIndex;
 
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
-        rb = GetComponent<Rigidbody2D>();   
+        rb = GetComponent<Rigidbody2D>();
         cd = GetComponent<CircleCollider2D>();
     }
 
@@ -34,6 +34,14 @@ public class Sword_Skill_Controller : MonoBehaviour
 
         rb.velocity = _dir;
         rb.gravityScale = _gravityScale;
+    }
+
+    public void SetupBounce(bool _isBouncing, int _amountOfBounce)
+    {
+        isBouncing = _isBouncing;
+        amountOfBounce = _amountOfBounce;
+
+        enemyTarget = new List<Transform>();
     }
 
     public void ReturnSword()
@@ -53,28 +61,34 @@ public class Sword_Skill_Controller : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, returnSpeed * Time.deltaTime);
 
-            if(Vector2.Distance(transform.position, player.transform.position) < 1)
-                player.CatchTheSword(); 
+            if (Vector2.Distance(transform.position, player.transform.position) < 1)
+                player.CatchTheSword();
         }
 
-        if(isBouncing && enemyTarget.Count > 0)
+        BounceLogic();
+    }
+
+    private void BounceLogic()
+    {
+        if (!isBouncing || enemyTarget.Count <= 0)
         {
-            transform.position = Vector2.MoveTowards(transform.position, enemyTarget[targetIndex].position,bounceSpeed * Time.deltaTime);
+            return;
+        }
+        transform.position = Vector2.MoveTowards(transform.position, enemyTarget[targetIndex].position, bounceSpeed * Time.deltaTime);
 
-            if(Vector2.Distance(transform.position, enemyTarget[targetIndex].position) < .1f)
+        if (Vector2.Distance(transform.position, enemyTarget[targetIndex].position) < .1f)
+        {
+            targetIndex++;
+            amountOfBounce--;
+
+            if (amountOfBounce <= 0)
             {
-                targetIndex++;
-                amountOfBounce--;
-
-                if(amountOfBounce <= 0)
-                {
-                    isBouncing = false;
-                    isReturning = true;
-                }
-
-                if (targetIndex >= enemyTarget.Count)
-                    targetIndex = 0;
+                isBouncing = false;
+                isReturning = true;
             }
+
+            if (targetIndex >= enemyTarget.Count)
+                targetIndex = 0;
         }
     }
 

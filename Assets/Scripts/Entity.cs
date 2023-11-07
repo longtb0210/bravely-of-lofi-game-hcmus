@@ -46,7 +46,6 @@ public class Entity : MonoBehaviour
     {
         fx.StartCoroutine("FlashFX");
         StartCoroutine("HitKnockback");
-        Debug.Log("aa");
     }
 
     protected virtual IEnumerator HitKnockback()

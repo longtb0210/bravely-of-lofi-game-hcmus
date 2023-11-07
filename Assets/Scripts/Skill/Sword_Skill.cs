@@ -19,7 +19,7 @@ public class Sword_Skill : Skill
 
     private GameObject[] dots;
 
-    protected virtual void Start()
+    protected override void Start()
     {
         base.Start();
 

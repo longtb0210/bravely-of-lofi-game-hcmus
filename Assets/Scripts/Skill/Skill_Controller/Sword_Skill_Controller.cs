@@ -113,5 +113,6 @@ public class Sword_Skill_Controller : MonoBehaviour
 
         anim.SetBool("Rotation", false);
         transform.parent = collision.transform;
+
     }
 }

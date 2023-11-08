@@ -15,12 +15,16 @@ public class Clone_Skill : Skill
     [SerializeField] private bool createCloneOnDashOver;
     [SerializeField] private bool canCreateCloneOnCouterAttack;
 
+    [Header("Clone can duplicate")]
+    [SerializeField] private bool canDuplicateClone;
+    [SerializeField] private float chanceToDuplicate;
+
     public void CreateClone(Transform _clonePosition, Vector3 _offset)
     {
         GameObject newClone = Instantiate(clonePrefabs);
 
         newClone.GetComponent<Clone_Skill_Controller>()
-            .SetupClone(_clonePosition, cloneDuration, canAttack, _offset, FindClosestEnemy(newClone.transform));
+            .SetupClone(_clonePosition, cloneDuration, canAttack, _offset, FindClosestEnemy(newClone.transform), canDuplicateClone, chanceToDuplicate);
     }
 
     public void CreateCloneOnDashStart()

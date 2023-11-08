@@ -67,7 +67,7 @@ public class BlackHole_Skill_Controller : MonoBehaviour
 
         if (canShrink)
         {
-            transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(-1, -1), growSpeed * Time.deltaTime);
+            transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(-1, -1), shrinkSpeed * Time.deltaTime);
 
             if (transform.localScale.x < 0)
                 Destroy(gameObject);

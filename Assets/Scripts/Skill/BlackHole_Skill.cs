@@ -4,13 +4,14 @@ public class BlackHole_Skill : Skill
 {
     [SerializeField] private int amountOfAttacks;
     [SerializeField] private float cloneCoolDown;
+    [SerializeField] private float blackHoleDuration;
     [Space]
     [SerializeField] private GameObject blackHolePrefab;
     [SerializeField] private float maxSize;
     [SerializeField] private float growSpeed;
     [SerializeField] private float shrinkSpeed;
 
-
+    BlackHole_Skill_Controller currentBlackHole;
     public override bool CanUseSkill()
     {
         return base.CanUseSkill();
@@ -22,9 +23,9 @@ public class BlackHole_Skill : Skill
 
         GameObject newBlackHole = Instantiate(blackHolePrefab, player.transform.position, Quaternion.identity);
 
-        BlackHole_Skill_Controller newBlackHoleScript = newBlackHole.GetComponent<BlackHole_Skill_Controller>();
+        currentBlackHole = newBlackHole.GetComponent<BlackHole_Skill_Controller>();
 
-        newBlackHoleScript.SetupBlackHole(maxSize, growSpeed, shrinkSpeed, amountOfAttacks, cloneCoolDown);
+        currentBlackHole.SetupBlackHole(maxSize, growSpeed, shrinkSpeed, amountOfAttacks, cloneCoolDown, blackHoleDuration);
     }
 
     protected override void Start()
@@ -35,5 +36,18 @@ public class BlackHole_Skill : Skill
     protected override void Update()
     {
         base.Update();
+    }
+
+    public bool SkillComplete()
+    {
+        if (!currentBlackHole) return false;
+
+        if (currentBlackHole.playerCanExitState)
+        {
+            currentBlackHole = null;
+            return true;
+        }
+
+        return false;
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,7 +24,7 @@ public class BlackHole_Skill_Controller : MonoBehaviour
     public List<Transform> targets = new List<Transform>();
     public List<GameObject> createHotKey = new List<GameObject>();
 
-    public bool playerCanExitState {  get; private set; }
+    public bool playerCanExitState { get; private set; }
 
     public void SetupBlackHole(float _maxSize, float _growSpeed, float _shrinkSpeed,
         int _amountOfAttacks, float _cloneAttackCoolDown, float _blackHoleDuration)
@@ -36,6 +35,9 @@ public class BlackHole_Skill_Controller : MonoBehaviour
         amountOfAttacks = _amountOfAttacks;
         cloneAttackCoolDown = _cloneAttackCoolDown;
         blackHoleTimer = _blackHoleDuration;
+
+        if (SkillManager.instance.clone.crystalInsteadOfClone)
+            playerCanDisapear = false;
     }
 
     private void Update()
@@ -43,13 +45,13 @@ public class BlackHole_Skill_Controller : MonoBehaviour
         cloneAttackTimer -= Time.deltaTime;
         blackHoleTimer -= Time.deltaTime;
 
-        if(blackHoleTimer < 0)
+        if (blackHoleTimer < 0)
         {
             blackHoleTimer = Mathf.Infinity;
 
             if (targets.Count > 0)
                 ReleaseCloneAttack();
-            else 
+            else
                 FinishBlackHoleAbility();
         }
 
@@ -103,7 +105,16 @@ public class BlackHole_Skill_Controller : MonoBehaviour
 
         float xOffset = Random.Range(0, 100) > 50 ? 2 : -2;
 
-        SkillManager.instance.clone.CreateClone(targets[randomIndex], new Vector3(xOffset, 0));
+        if (SkillManager.instance.clone.crystalInsteadOfClone)
+        {
+            SkillManager.instance.crystal.CreateCrystal();
+            SkillManager.instance.crystal.CurrentCrystalChooseRandomTarget();
+        }
+        else
+        {
+            SkillManager.instance.clone.CreateClone(targets[randomIndex], new Vector3(xOffset, 0));
+        }
+
         amountOfAttacks--;
 
         if (amountOfAttacks <= 0)
@@ -132,15 +143,15 @@ public class BlackHole_Skill_Controller : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Enemy>()!= null)
+        if (collision.GetComponent<Enemy>() != null)
         {
             collision.GetComponent<Enemy>().FreezeTime(true);
             CreateHotKey(collision);
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)=> collision.GetComponent<Enemy>()?.FreezeTime(false);
-   
+    private void OnTriggerExit2D(Collider2D collision) => collision.GetComponent<Enemy>()?.FreezeTime(false);
+
 
     private void CreateHotKey(Collider2D collision)
     {

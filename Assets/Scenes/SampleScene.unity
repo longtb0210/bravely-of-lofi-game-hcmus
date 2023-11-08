@@ -6520,11 +6520,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &712543085 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 232714798689490253, guid: 0febeb876efb54e49bef2f2fc0877d09, type: 3}
-  m_PrefabInstance: {fileID: 1359277322}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &721625042
 GameObject:
   m_ObjectHideFlags: 0
@@ -11358,12 +11353,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ff5f3778908a948b9d0a4a4fb2a382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hotKeyPrefab: {fileID: 1646011310}
-  keyCodeList: 7100000077000000650000007200000074000000
+  hotKeyPrefab: {fileID: 1365107168075147666, guid: e96be9342e01a9c45aadbbfe23b4ce99, type: 3}
+  keyCodeList: 7100000077000000650000006600000074000000
   maxSize: 15
   growSpeed: 1
+  shrinkSpeed: 3
   canGrow: 0
+  canShrink: 0
+  amountOfAttacks: 4
+  cloneAttackCoolDown: 0.3
   targets: []
+  createHotKey: []
 --- !u!1 &1089343655
 GameObject:
   m_ObjectHideFlags: 0
@@ -12053,63 +12053,6 @@ Transform:
   - {fileID: 1288899793}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1359277322
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 232714798689490253, guid: 0febeb876efb54e49bef2f2fc0877d09, type: 3}
-      propertyPath: m_Name
-      value: AimDot
-      objectReference: {fileID: 0}
-    - target: {fileID: 5022015797120932989, guid: 0febeb876efb54e49bef2f2fc0877d09, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 27.517202
-      objectReference: {fileID: 0}
-    - target: {fileID: 5022015797120932989, guid: 0febeb876efb54e49bef2f2fc0877d09, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.2495373
-      objectReference: {fileID: 0}
-    - target: {fileID: 5022015797120932989, guid: 0febeb876efb54e49bef2f2fc0877d09, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5022015797120932989, guid: 0febeb876efb54e49bef2f2fc0877d09, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5022015797120932989, guid: 0febeb876efb54e49bef2f2fc0877d09, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5022015797120932989, guid: 0febeb876efb54e49bef2f2fc0877d09, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5022015797120932989, guid: 0febeb876efb54e49bef2f2fc0877d09, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5022015797120932989, guid: 0febeb876efb54e49bef2f2fc0877d09, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5022015797120932989, guid: 0febeb876efb54e49bef2f2fc0877d09, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5022015797120932989, guid: 0febeb876efb54e49bef2f2fc0877d09, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0febeb876efb54e49bef2f2fc0877d09, type: 3}
 --- !u!1 &1390918531
 GameObject:
   m_ObjectHideFlags: 0
@@ -12570,11 +12513,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 905554655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1646011310 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1365107168075147666, guid: e96be9342e01a9c45aadbbfe23b4ce99, type: 3}
-  m_PrefabInstance: {fileID: 5612529150677236958}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1693682496
 GameObject:
   m_ObjectHideFlags: 0
@@ -13204,8 +13142,8 @@ MonoBehaviour:
   returnSpeed: 15
   numberOfDots: 20
   spaceBetweenDots: 0.07
-  dotPrefab: {fileID: 712543085}
-  dotsParent: {fileID: 0}
+  dotPrefab: {fileID: 232714798689490253, guid: 0febeb876efb54e49bef2f2fc0877d09, type: 3}
+  dotsParent: {fileID: 185599873}
 --- !u!1 &2017216327
 GameObject:
   m_ObjectHideFlags: 0
@@ -13385,4 +13323,3 @@ SceneRoots:
   - {fileID: 1043630918}
   - {fileID: 5612529150677236958}
   - {fileID: 777363891}
-  - {fileID: 1359277322}

@@ -5,19 +5,25 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
+    public Stat strength;
     public Stat damage;
     public Stat maxHealth;
 
     [SerializeField] public float currentHealth;
 
-    void Start()
+    protected virtual void Start()
     {
         currentHealth = maxHealth.GetValue();
-
-        damage.AddModifier(5);
     }
 
-    public void TakeDamge(int _damage)
+    public virtual void DoDamge(CharacterStats _targetStats)
+    {
+        int totalDamge = damage.GetValue() + strength.GetValue();
+
+        _targetStats.TakeDamge(totalDamge);
+    }
+
+    public virtual void TakeDamge(int _damage)
     {
         currentHealth -= _damage;
 
@@ -25,7 +31,7 @@ public class CharacterStats : MonoBehaviour
             Die();
     }
 
-    private void Die()
+    protected virtual void Die()
     {
         
     }

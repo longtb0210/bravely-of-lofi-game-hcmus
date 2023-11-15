@@ -12564,7 +12564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0
-  amountOfAttacks: 4
+  amountOfAttacks: 15
   cloneCoolDown: 0.35
   blackHoleDuration: 3
   blackHolePrefab: {fileID: 4898471237246714243, guid: 238d6cb21fb133149bd20faa924ea8b4, type: 3}
@@ -12583,7 +12583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4575c5893aa32fb459603327d872af77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 4
+  cooldown: 0
   crystalDuration: 1.5
   crystalPrefab: {fileID: 3587555074520630372, guid: 318ccdeb3a3dab745acd51f5754eaa72, type: 3}
   cloneInsteadOfCrystal: 0
@@ -12593,7 +12593,7 @@ MonoBehaviour:
   canUseMultiStacks: 1
   amountOfStacks: 3
   multiStackCoolDown: 4
-  useTimeWindow: 0
+  useTimeWindow: 2.5
   crystalLeft:
   - {fileID: 3587555074520630372, guid: 318ccdeb3a3dab745acd51f5754eaa72, type: 3}
   - {fileID: 3587555074520630372, guid: 318ccdeb3a3dab745acd51f5754eaa72, type: 3}

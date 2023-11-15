@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -69,7 +68,7 @@ public class Crystal_Skill : Skill
     {
         if (canUseMultiStacks)
         {
-            if(crystalLeft.Count > 0)
+            if (crystalLeft.Count > 0)
             {
                 if (crystalLeft.Count == amountOfStacks)
                     Invoke("ResetAbility", useTimeWindow);
@@ -83,7 +82,7 @@ public class Crystal_Skill : Skill
                 newCrystal.GetComponent<Crystal_Skill_Controller>()
                     .SetupCrystal(crystalDuration, canExplode, canMoveToEnemy, moveSpeed, FindClosestEnemy(newCrystal.transform));
 
-                if(crystalLeft.Count <= 0)
+                if (crystalLeft.Count <= 0)
                 {
                     cooldown = multiStackCoolDown;
                     RefilCrystal();

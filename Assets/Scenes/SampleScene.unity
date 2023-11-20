@@ -10910,8 +10910,8 @@ GameObject:
   - component: {fileID: 996536370}
   - component: {fileID: 996536376}
   - component: {fileID: 996536371}
-  - component: {fileID: 996536374}
   - component: {fileID: 996536375}
+  - component: {fileID: 996536377}
   m_Layer: 7
   m_Name: Enemy_Skeleton
   m_TagString: Untagged
@@ -11002,25 +11002,6 @@ Transform:
   - {fileID: 876218465}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &996536374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 996536369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d5e8475fcab45a4a8cccc4c86b1f444, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashDuration: 0.2
-  hitMat: {fileID: 2100000, guid: 6b3eebc3f64e99c458770f0270bc6c64, type: 2}
-  chillColor: {r: 0, g: 0, b: 0, a: 0}
-  igniteColor:
-  - {r: 0.9843137, g: 0.29411766, b: 0.29411766, a: 1}
-  - {r: 0.9529412, g: 0.7529412, b: 0.7529412, a: 1}
-  shockColor: []
 --- !u!114 &996536375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11055,7 +11036,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 50
+    baseValue: 10000
     modifiers: 
   armor:
     baseValue: 0
@@ -11067,17 +11048,18 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   fireDamage:
-    baseValue: 5
+    baseValue: 0
     modifiers: 
   iceDamage:
-    baseValue: 1
+    baseValue: 0
     modifiers: 
   lightingDamage:
-    baseValue: 1
+    baseValue: 0
     modifiers: 
   isIgnited: 0
   isChilled: 0
   isShocked: 0
+  alimentDuration: 4
   currentHealth: 10000000
 --- !u!70 &996536376
 CapsuleCollider2D:
@@ -11114,6 +11096,29 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0050878525, y: -0.26970065}
   m_Size: {x: 1.0190487, y: 1.539402}
   m_Direction: 0
+--- !u!114 &996536377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996536369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5e8475fcab45a4a8cccc4c86b1f444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0.2
+  hitMat: {fileID: 2100000, guid: 6b3eebc3f64e99c458770f0270bc6c64, type: 2}
+  chillColor:
+  - {r: 0.29156283, g: 0.61101574, b: 0.9811321, a: 1}
+  - {r: 0.2901961, g: 0.6117647, b: 0.98039216, a: 1}
+  igniteColor:
+  - {r: 0.9843137, g: 0.29411766, b: 0.29411766, a: 1}
+  - {r: 0.9529412, g: 0.7529412, b: 0.7529412, a: 1}
+  shockColor:
+  - {r: 0.9811321, g: 0.92929745, b: 0.22677112, a: 1}
+  - {r: 0.996677, g: 1, b: 0.6556604, a: 1}
 --- !u!1 &1128067553
 GameObject:
   m_ObjectHideFlags: 0
@@ -11844,8 +11849,8 @@ GameObject:
   - component: {fileID: 1761097166}
   - component: {fileID: 1761097169}
   - component: {fileID: 1761097165}
-  - component: {fileID: 1761097170}
   - component: {fileID: 1761097171}
+  - component: {fileID: 1761097172}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -11969,25 +11974,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &1761097170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1761097164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d5e8475fcab45a4a8cccc4c86b1f444, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashDuration: 0.15
-  hitMat: {fileID: 2100000, guid: 6b3eebc3f64e99c458770f0270bc6c64, type: 2}
-  chillColor: {r: 0, g: 0, b: 0, a: 0}
-  igniteColor:
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  shockColor: []
 --- !u!114 &1761097171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12034,18 +12020,42 @@ MonoBehaviour:
     baseValue: 1
     modifiers: 
   fireDamage:
-    baseValue: 5
+    baseValue: 1
     modifiers: 
   iceDamage:
-    baseValue: 1
+    baseValue: 2
     modifiers: 
   lightingDamage:
-    baseValue: 1
+    baseValue: 3
     modifiers: 
   isIgnited: 0
   isChilled: 0
   isShocked: 0
+  alimentDuration: 4
   currentHealth: 100
+--- !u!114 &1761097172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761097164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5e8475fcab45a4a8cccc4c86b1f444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0.2
+  hitMat: {fileID: 2100000, guid: 6b3eebc3f64e99c458770f0270bc6c64, type: 2}
+  chillColor:
+  - {r: 0.29156283, g: 0.61101574, b: 0.9811321, a: 1}
+  - {r: 0.2901961, g: 0.6117647, b: 0.98039216, a: 5.3746705e-11}
+  igniteColor:
+  - {r: 0.9843137, g: 0.29411766, b: 0.29411766, a: 1}
+  - {r: 0.9529412, g: 0.7529412, b: 0.7529412, a: 1}
+  shockColor:
+  - {r: 0.9811321, g: 0.92929745, b: 0.22677112, a: 1}
+  - {r: 0.996677, g: 1, b: 0.6556604, a: 1}
 --- !u!1 &1802195752
 GameObject:
   m_ObjectHideFlags: 0

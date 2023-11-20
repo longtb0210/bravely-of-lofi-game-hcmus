@@ -11016,6 +11016,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.2
   hitMat: {fileID: 2100000, guid: 6b3eebc3f64e99c458770f0270bc6c64, type: 2}
+  chillColor: {r: 0, g: 0, b: 0, a: 0}
+  igniteColor:
+  - {r: 0.9843137, g: 0.29411766, b: 0.29411766, a: 1}
+  - {r: 0.9529412, g: 0.7529412, b: 0.7529412, a: 1}
+  shockColor: []
 --- !u!114 &996536375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11065,15 +11070,15 @@ MonoBehaviour:
     baseValue: 5
     modifiers: 
   iceDamage:
-    baseValue: 5
+    baseValue: 1
     modifiers: 
   lightingDamage:
-    baseValue: 5
+    baseValue: 1
     modifiers: 
   isIgnited: 0
   isChilled: 0
   isShocked: 0
-  currentHealth: 1000
+  currentHealth: 10000000
 --- !u!70 &996536376
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -11978,6 +11983,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.15
   hitMat: {fileID: 2100000, guid: 6b3eebc3f64e99c458770f0270bc6c64, type: 2}
+  chillColor: {r: 0, g: 0, b: 0, a: 0}
+  igniteColor:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  shockColor: []
 --- !u!114 &1761097171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12000,10 +12010,10 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   vitality:
-    baseValue: 5
+    baseValue: 0
     modifiers: 
   damage:
-    baseValue: 10
+    baseValue: 1
     modifiers: 
   critChance:
     baseValue: 0
@@ -12012,7 +12022,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 100
+    baseValue: 100000
     modifiers: 
   armor:
     baseValue: 0
@@ -12024,18 +12034,18 @@ MonoBehaviour:
     baseValue: 1
     modifiers: 
   fireDamage:
-    baseValue: 12
+    baseValue: 5
     modifiers: 
   iceDamage:
-    baseValue: 4
+    baseValue: 1
     modifiers: 
   lightingDamage:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   isIgnited: 0
   isChilled: 0
   isShocked: 0
-  currentHealth: 0
+  currentHealth: 100
 --- !u!1 &1802195752
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
+    private EntityFX fx;
+
     [Header("Major stats")]
     public Stat strength;   // increase damge
     public Stat agility;    //increase evasion
@@ -28,12 +30,12 @@ public class CharacterStats : MonoBehaviour
     public bool isChilled; // reduce armor by 20%
     public bool isShocked; //reduce accuracy by 20%
 
+    [SerializeField] private float alimentDuration = 4;
     private float ignitedTimer;
     private float chillTimer;
     private float shockTimer;
 
-
-    private float ignitedDamgeCoolDown = .3f;
+    private float ignitedDamageCoolDown = .3f;
     private float ignitedDamageTimer;
     private int igniteDamge;
 
@@ -46,6 +48,8 @@ public class CharacterStats : MonoBehaviour
     {
         critPower.SetDefaultValue(150);
         currentHealth = GetMaxHealthValue();
+
+        fx = GetComponent<EntityFX>();
     }
 
     protected virtual void Update()
@@ -67,12 +71,13 @@ public class CharacterStats : MonoBehaviour
 
         if(ignitedDamageTimer < 0 && isIgnited)
         {
+            Debug.Log("Take burn damage "  + igniteDamge);
             DecreaseHealthBy(igniteDamge);
 
             if (currentHealth < 0)
                 Die();
 
-            ignitedDamageTimer = ignitedDamgeCoolDown;
+            ignitedDamageTimer = ignitedDamageCoolDown;
         }
     }
 
@@ -85,13 +90,13 @@ public class CharacterStats : MonoBehaviour
 
         if (CanCrit())
             totalDamge = CaculateCriticalDamage(totalDamge);
-
+       
         totalDamge = CheckTargetArmor(_targetStats, totalDamge);
         //_targetStats.TakeDamge(totalDamge);
-        doMagicalDamage(_targetStats);
+        DoMagicalDamage(_targetStats);
     }
 
-    public virtual void doMagicalDamage(CharacterStats _targetStats)
+    public virtual void DoMagicalDamage(CharacterStats _targetStats)
     {
         int _fireDamage = fireDamage.GetValue();
         int _iceDamage = iceDamage.GetValue();
@@ -105,12 +110,12 @@ public class CharacterStats : MonoBehaviour
         if (Mathf.Max(_fireDamage, _iceDamage, _lightingDamage) <= 0) return;
 
         bool canApplyIgnite = _fireDamage > _iceDamage && _fireDamage > _lightingDamage;
-        bool canApplyChill = _fireDamage < _iceDamage && _iceDamage > _lightingDamage;
-        bool canApplyShock = _fireDamage < _lightingDamage && _iceDamage < _lightingDamage;
+        bool canApplyChill = _iceDamage > _fireDamage && _iceDamage > _lightingDamage;
+        bool canApplyShock = _lightingDamage > _fireDamage && _lightingDamage > _iceDamage;
 
-        while(!canApplyIgnite && !canApplyChill && !canApplyShock)
+        while (!canApplyIgnite && !canApplyChill && !canApplyShock)
         {
-            if(Random.value < .3f && _fireDamage > 0)
+            if (Random.value < .3f && _fireDamage > 0)
             {
                 canApplyIgnite = true;
                 _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyShock);
@@ -147,24 +152,30 @@ public class CharacterStats : MonoBehaviour
 
     public void ApplyAilments(bool _ignite, bool _chill, bool _shock)
     {
-        if (_ignite || _chill || _shock) return;
+        if (isIgnited || isChilled || isShocked) return;
 
         if (_ignite)
         {
             isIgnited = _ignite;
-            ignitedTimer = 2;
+            ignitedTimer = alimentDuration;
+
+            fx.IgniteFxFor(alimentDuration);
         }
 
         if (_chill)
         {
             isChilled = _chill;
-            chillTimer = 2;
+            chillTimer = alimentDuration;
+
+            fx.ChillFxFor(alimentDuration);
         }
 
         if(_shock)
         {
             isShocked = _shock;
-            shockTimer = 2;
+            shockTimer = alimentDuration;
+
+            fx.ShockFxFor(alimentDuration);
         }
     }
 
@@ -173,6 +184,7 @@ public class CharacterStats : MonoBehaviour
     public virtual void TakeDamge(int _damage)
     {
         DecreaseHealthBy(_damage);
+        Debug.Log("Damage: " + _damage);
 
         if (currentHealth < 0)
             Die();
